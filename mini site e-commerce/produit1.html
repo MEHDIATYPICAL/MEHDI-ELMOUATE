@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smartphone Galaxy S22 - E-Shop</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <style>
+        :root {
+            --primary-color: #4a6de5;
+            --secondary-color: #f8f9fa;
+            --accent-color: #dc3545;
+            --text-color: #333;
+            --light-gray: #e9ecef;
+            --dark-gray: #6c757d;
+            --dark-blue: #0d2354;
+            --success-color: #28a745;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+      
+        .navbar {
+            background-color: var(--primary-color) !important;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 12px 0;
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            font-size: a.8rem;
+            letter-spacing: -0.5px;
+        }
+
+        .navbar-dark .navbar-nav .nav-link {
+            color: rgba(255, 255, 255, 0.85);
+            font-weight: 500;
+            padding: 8px 16px;
+            transition: all 0.3s ease;
+        }
+
+        .navbar-dark .navbar-nav .nav-link:hover {
+            color: #ffffff;
+        }
+
+        .dropdown-menu {
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border: none;
+            padding: 10px 0;
+            margin-top: 10px;
+        }
+
+        .dropdown-item {
+            padding: 8px 20px;
+            transition: all 0.2s;
+        }
+
+        .dropdown-item:hover {
+            background-color: var(--light-gray);
+        }
+
+        .btn-outline-light {
+            border-radius: 6px;
+            font-weight: 500;
+            padding: 8px 16px;
+            transition: all 0.3s;
+        }
+
+        .btn-outline-light:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+      
+        .breadcrumb {
+            padding: 12px 0;
+            background-color: transparent;
+            font-size: 0.95rem;
+        }
+
+        .breadcrumb-item a {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .breadcrumb-item a:hover {
+            color: var(--dark-blue);
+            text-decoration: underline;
+        }
+
+       
+        .product-image {
+            max-height: 450px;
+            object-fit: contain;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            background-color: white;
+            padding: 20px;
+            transition: transform 0.3s;
+        }
+
+        .product-image:hover {
+            transform: scale(1.02);
+        }
+
+        .thumbnail-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .thumbnail {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 8px;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.2s;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .thumbnail:hover {
+            border-color: var(--primary-color);
+            transform: translateY(-2px);
+        }
+
+        .thumbnail.active {
+            border-color: var(--primary-color);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+       
+        h1 {
+            font-weight: 700;
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+            color: var(--dark-blue);
+        }
+
+        .badge {
+            font-size: 0.85rem;
+            padding: 6px 12px;
+            border-radius: 6px;
+            margin-right: 8px;
+        }
+
+        .text-primary {
+            color: var(--primary-color) !important;
+        }
+
+        h2.fs-4 {
+            font-weight: 700;
+            margin: 18px 0;
+            font-size: 1.8rem !important;
+        }
+
+        h3.fs-5 {
+            font-weight: 600;
+            margin-top: 28px;
+            color: var(--dark-blue);
+            border-bottom: 2px solid var(--light-gray);
+            padding-bottom: 8px;
+            margin-bottom: 16px;
+        }
+
+        .text-muted {
+            color: var(--dark-gray) !important;
+        }
+
+       
+        .description-container {
+            background-color: var(--secondary-color);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 30px 0;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+        }
+
+        .description-container p {
+            margin-bottom: 16px;
+            line-height: 1.7;
+        }
+
+     
+        .features-list {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        .features-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid var(--light-gray);
+            display: flex;
+            align-items: center;
+        }
+
+        .features-list li:before {
+            content: "\F270";
+            font-family: "bootstrap-icons";
+            margin-right: 10px;
+            color: var(--primary-color);
+            font-size: 0.9rem;
+        }
+
+        .features-list li:last-child {
+            border-bottom: none;
+        }
+
+        
+        .quantity-container {
+            background-color: var(--secondary-color);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 25px 0;
+        }
+
+        .col-form-label {
+            font-weight: 500;
+        }
+
+        input[type="number"] {
+            border-radius: 6px;
+            border: 2px solid var(--light-gray);
+            font-size: 1.1rem;
+            padding: 8px 12px;
+            transition: all 0.2s;
+        }
+
+        input[type="number"]:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 0.2rem rgba(74, 109, 229, 0.25);
+        }
+
+      
+        .btn {
+            border-radius: 6px;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+            padding: 12px 24px;
+        }
+
+        .btn-primary:hover {
+            background-color: #3959d9;
+            border-color: #3959d9;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        }
+
+        .btn-outline-primary {
+            color: var(--primary-color);
+            border-color: var(--primary-color);
+            padding: 8px 16px;
+        }
+
+        .btn-outline-primary:hover {
+            background-color: var(--primary-color);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+       
+        .similar-products {
+            background-color: var(--secondary-color);
+            border-radius: 12px;
+            padding: 30px;
+            margin-top: 60px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+        }
+
+        .similar-products h3 {
+            font-weight: 700;
+            margin-bottom: 25px;
+            color: var(--dark-blue);
+            border-bottom: 2px solid var(--light-gray);
+            padding-bottom: 15px;
+        }
+
+        .card {
+            border: none;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s;
+            height: 100%;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 20px rgba(0,0,0,0.15);
+        }
+
+        .card img {
+            height: 200px;
+            object-fit: contain;
+            padding: 15px;
+            background-color: white;
+            transition: all 0.3s;
+        }
+
+        .card:hover img {
+            transform: scale(1.05);
+        }
+
+        .card-body {
+            padding: 20px;
+        }
+
+        .card-title {
+            font-weight: 600;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        .card .btn {
+            margin-top: 10px;
+        }
+
+      
+        footer {
+            background-color: var(--dark-blue) !important;
+            margin-top: 80px !important;
+            padding: 50px 0 20px !important;
+        }
+
+        footer h5 {
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        footer a {
+            color: rgba(255, 255, 255, 0.8) !important;
+            transition: color 0.2s;
+            text-decoration: none !important;
+        }
+
+        footer a:hover {
+            color: white !important;
+            text-decoration: underline !important;
+        }
+
+        footer address p {
+            margin-bottom: 10px;
+        }
+
+        footer .border-top {
+            border-color: rgba(255, 255, 255, 0.1) !important;
+        }
+
+       
+        @media (max-width: 768px) {
+            .product-image {
+                max-height: 350px;
+                margin-bottom: 30px;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .similar-products {
+                padding: 20px;
+            }
+            
+            .thumbnail {
+                width: 60px;
+                height: 60px;
+            }
+            
+            .badge {
+                font-size: 0.8rem;
+                padding: 5px 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">E-Shop</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Accueil</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Catégories
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="categorie1.html">Électronique</a></li>
+                            <li><a class="dropdown-item" href="categorie2.html">Vêtements</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <div class="d-flex">
+                    <a href="panier.html" class="btn btn-outline-light">
+                        <i class="bi bi-cart3"></i> Panier <span class="badge bg-danger">0</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+   
+    <main class="container my-5">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html">Accueil</a></li>
+                <li class="breadcrumb-item"><a href="categorie1.html">Électronique</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Smartphone Galaxy S22</li>
+            </ol>
+        </nav>
+
+        <div class="row mt-4">
+           
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <img src="IMG/SAMSUNG-22-BURpng.png" alt="Smartphone Galaxy S22" class="img-fluid product-image rounded" id="mainImage">
+                </div>
+               
+            </div>
+
+            
+            <div class="col-md-6">
+                <h1 class="mb-3">Smartphone Galaxy S22</h1>
+                <div class="mb-3">
+                    <span class="badge bg-primary">Nouveau</span>
+                    <span class="badge bg-success">En stock</span>
+                </div>
+                <h2 class="fs-4 mb-3 text-primary">7999,99 DH</h2>
+
+                <div class="mb-4">
+                    <p class="text-muted">Réf: TECH-GS22-01</p>
+                </div>
+
+                <div class="mb-4">
+                    <h3 class="fs-5">Description</h3>
+                    <p>Le Samsung Galaxy S22 est un smartphone haut de gamme offrant des performances exceptionnelles avec son écran AMOLED de 6,1 pouces et sa résolution FHD+. Équipé d'un processeur puissant, il assure une fluidité parfaite pour toutes vos applications.</p>
+                    <p>Son triple appareil photo arrière avec capteur principal de 50MP vous permet de capturer des images époustouflantes dans toutes les conditions.</p>
+                </div>
+
+                <div class="mb-4">
+                    <h3 class="fs-5">Caractéristiques</h3>
+                    <ul>
+                        <li>Écran AMOLED 6,1" (FHD+)</li>
+                        <li>Processeur Octa-core</li>
+                        <li>8 Go de RAM</li>
+                        <li>128 Go de stockage</li>
+                        <li>Triple caméra arrière (50MP + 12MP + 10MP)</li>
+                        <li>Batterie 3700 mAh</li>
+                        <li>Android 12</li>
+                    </ul>
+                </div>
+
+                <div class="mb-4">
+                    <div class="row g-2 align-items-center">
+                        <div class="col-auto">
+                            <label for="quantite" class="col-form-label">Quantité</label>
+                        </div>
+                        <div class="col-3">
+                            <input type="number" id="quantite" class="form-control" min="1" value="1">
+                        </div>
+                    </div>
+                </div>
+
+                <button class="btn btn-primary btn-lg" onclick="ajouterAuPanier()">
+                    <i class="bi bi-cart-plus"></i> Ajouter au panier
+                </button>
+            </div>
+        </div>
+
+       
+        <div class="mt-5">
+            <h3 class="mb-4 border-bottom pb-2">Produits similaires</h3>
+            <div class="row row-cols-1 row-cols-md-4 g-4">
+                <div class="col">
+                    <div class="card h-100">
+                        <img src="IMG/laptop1.png" class="card-img-top" alt="Laptop ProBook 450">
+                        <div class="card-body">
+                            <h5 class="card-title">Laptop ProBook 450</h5>
+                            <p class="card-text text-primary fw-bold">3999,99 DH</p>
+                            <a href="produit2.html" class="btn btn-outline-primary">Voir le produit</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card h-100">
+                        <img src="IMG/ecouteurs.jpg" class="card-img-top" alt="Écouteurs sans fil">
+                        <div class="card-body">
+                            <h5 class="card-title">Écouteurs sans fil</h5>
+                            <p class="card-text text-primary fw-bold">129,99 DH</p>
+                            <a href="produit3.html" class="btn btn-outline-primary">Voir le produit</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card h-100">
+                        <img src="IMG/Tablette MediaPad.jpg" class="card-img-top" alt="Tablette MediaPad">
+                        <div class="card-body">
+                            <h5 class="card-title">Tablette MediaPad</h5>
+                            <p class="card-text text-primary fw-bold">3490,99 DH</p>
+                            <a href="produit4.html" class="btn btn-outline-primary">Voir le produit</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card h-100">
+                        <img src="IMG/Montre connectée Fit.webp" class="card-img-top" alt="Montre connectée Fit">
+                        <div class="card-body">
+                            <h5 class="card-title">Montre connectée Fit</h5>
+                            <p class="card-text text-primary fw-bold">1499,99 DH</p>
+                            <a href="produit5.html" class="btn btn-outline-primary">Voir le produit</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    
+    <footer class="bg-dark text-white py-4 mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-3">
+                    <h5>À propos de E-Shop</h5>
+                    <p>Votre boutique en ligne proposant les meilleurs produits électroniques et vêtements tendance.</p>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <h5>Liens rapides</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="index.html" class="text-white">Accueil</a></li>
+                        <li><a href="categorie1.html" class="text-white">Électronique</a></li>
+                        <li><a href="categorie2.html" class="text-white">Vêtements</a></li>
+                        <li><a href="panier.html" class="text-white">Panier</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5>Contact</h5>
+                    <address>
+                        <p><i class="bi bi-geo-alt"></i> laayoune, 25 mars</p>
+                        <p><i class="bi bi-telephone"></i> +212 1 23 45 67 89</p>
+                        <p><i class="bi bi-envelope"></i> mehdielmouate.com</p>
+                    </address>
+                </div>
+            </div>
+            <div class="border-top pt-3 mt-3">
+                <p class="text-center mb-0">&copy; 2025 E-Shop. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function changeImage(thumbnail, newSrc) {
+           
+            document.getElementById('mainImage').src = newSrc;
+            
+            
+            const thumbnails = document.getElementsByClassName('thumbnail');
+            for (let i = 0; i < thumbnails.length; i++) {
+                thumbnails[i].classList.remove('active');
+            }
+            thumbnail.classList.add('active');
+        }
+
+        function ajouterAuPanier() {
+            alert('Produit ajouté au panier !');
+            const badgeElement = document.querySelector('.badge');
+            const currentValue = parseInt(badgeElement.textContent);
+            badgeElement.textContent = currentValue + parseInt(document.getElementById('quantite').value);
+        }
+    </script>
+</body>
+</html>
